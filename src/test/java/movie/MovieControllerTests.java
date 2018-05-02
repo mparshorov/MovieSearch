@@ -37,14 +37,14 @@ public class MovieControllerTests {
     private MockMvc mockMvc;
 
     @Test
-    public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
+    public void noParamMovieShouldReturnDefaultSearch() throws Exception {
 
         this.mockMvc.perform(get("/movie")).andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.root.movie").exists());
     }
 
     @Test
-    public void paramGreetingShouldReturnTailoredMessage() throws Exception {
+    public void paramMovieShouldReturnTheMovie() throws Exception {
 
         this.mockMvc.perform(get("/movie").param("title", "spring"))
                 .andDo(print()).andExpect(status().isOk())

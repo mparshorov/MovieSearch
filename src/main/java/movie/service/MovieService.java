@@ -1,5 +1,6 @@
 package movie.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -13,7 +14,10 @@ import java.net.URL;
 @Service
 public class MovieService {
 
-    private static final String IMDB_MOVIE_REQUEST_URL = "https://www.omdbapi.com/?apikey=b1fb3108&r=xml&t=%s";
+    @Value("${apikey}")
+    private String apikey;
+
+    private static final String IMDB_MOVIE_REQUEST_URL = "https://www.omdbapi.com/?apikey=%s&r=xml&t=%s";
 
     /**
      * Calls a third party service which searches a movie DB for a given title
@@ -25,7 +29,7 @@ public class MovieService {
         StringBuilder result = new StringBuilder();
         HttpURLConnection conn = null;
         try{
-            URL url = new URL(String.format(IMDB_MOVIE_REQUEST_URL, movieTitle));
+            URL url = new URL(String.format(IMDB_MOVIE_REQUEST_URL, apikey, movieTitle));
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));

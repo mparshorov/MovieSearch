@@ -8,6 +8,11 @@ the XML responses to JSON.
 
 You have to have maven installed. If you don't have it installed please visit <https://maven.apache.org/download.cgi>
 
+If for some reason the code does not compile or is not working it could be that
+the **apikey** for the third party service has expired. If that is the case
+you can visit <https://www.omdbapi.com/>, register for your own api key and 
+when you have it just replace the existing property value for _apikey_ with your own key inside the **application.properties** file.  
+
 ## Run
 
 `./mvnw spring-boot:run`
